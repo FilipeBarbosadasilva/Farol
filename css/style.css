@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+.content {
+  position: relative;
+  z-index: 1;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  background: url("../img/farol1.png") no-repeat center bottom;
+  background-size: cover; /* mostra tudo */
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 20%; /* ajusta posição do farol */
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.7), transparent 70%);
+  animation: pulse 2.5s infinite ease-in-out;
+  z-index: 0;
+}
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.1;
+  }
+}
+
+/* Container principal */
+.content {
+  width: 900px;
+  height: 500px;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0.7;
+}
+
+/* Lado esquerdo */
+
+.description {
+  width: 50%;
+  background: linear-gradient(135deg, #1f1f1f, #021722);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+/* Título */
+.description h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Textos */
+.description p {
+  font-size: 16px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+/* Botão */
+.description input[type="button"] {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+/* Hover botão */
+.description input[type="button"]:hover {
+  background: white;
+  color: #0284c7;
+  transform: scale(1.05);
+}
+
+/* Lado direito */
+.login {
+  width: 50%;
+  background: rgba(24, 21, 21, 0.664);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #eaebec;
+  text-transform: uppercase;
+}
+
+.rede-social ul,
+li,
+a {
+  display: inline-block;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.rede-social li {
+  margin: 0;
+}
+
+.rede-social a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 10px;
+}
+
+.rede-social a:hover {
+  color: #fff;
+  background-color: #0ea5e9;
+}
+/* Inputs */
+.login input {
+  margin-bottom: 18px;
+  padding: 15px;
+  border: 2px solid #bdccfd;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login input:focus {
+  border-color: #0ea5e9;
+}
+
+/* Botão */
+.login input[type="button"] {
+  background: #0ea5e9;
+  color: white;
+  border: 1;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.login input[type="button"]:hover {
+  background: #0284c7;
+}
+/* ============================= */
+/* 📱 RESPONSIVO CELULAR */
+/* ============================= */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+  }
+
+  .description {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .login {
+    width: 100%;
+    padding: 30px 0;
+  }
+  .login form {
+    width: 90%;
+  }
+  body {
+    background-position: center top;
+  }
+}
+
+/* ============================= */
+/* 📲 TABLET */
+/* ============================= */
+@media (max-width: 1024px) {
+  .content {
+    width: 90%;
+    height: auto;
+  }
+
+  .description,
+  .login {
+    padding: 30px;
+  }
+}
+/* ============================= */
+/* 💻 TELAS GRANDES */
+/* ============================= */
+@media (min-width: 1400px) {
+  .content {
+    width: 1000px;
+    height: 550px;
+  }
+}

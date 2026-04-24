@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Pojeto Farol</title>
+</head>
+
+
+<header>
+  <div class="logo">🚨 FAROL</div>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<div class="container">
+
+  <!-- SAUDAÇÃO -->
+  <h2 id="saudacao"></h2>
+  <h1>Ola Filipe</h1>
+  <p>Central de segurança</p>
+
+  <!-- CARDS DE SEGURANÇA -->
+  <div class="cards">
+    <div class="card" onclick="ligar('190')">
+      🚓<h3>Polícia</h3>
+    </div>
+
+    <div class="card" onclick="ligar('193')">
+      🚒<h3>Bombeiros</h3>
+    </div>
+
+    <div class="card" onclick="ligar('192')">
+      🚑<h3>Emergência</h3>
+    </div>
+
+    <div class="card" onclick="seguranca()">
+      🛡️<h3>Segurança</h3>
+    </div>
+  </div>
+
+  <!-- BOTÕES SOS -->
+  <div class="acoes">
+    <button class="sos" onclick="ativarSOS()">🚨 Ativar Emergência</button>
+    <button class="desativar" onclick="desativarSOS()">✅ Desativar Emergência</button>
+
+    <div id="acoes">Status: Inativo</div>
+
+<script>
+function ativarSOS() {
+  document.getElementById("acoes").innerText = "Status: Ativo";
+}
+
+function desativarSOS() {
+  document.getElementById("acoes").innerText = "Status: Inativo";
+}
+</script>
+    
+  </div>
+
+  <!-- MAPA -->
+  <div class="mapa">
+     <iframe id="mapaFrame"
+      width="100%" height="250"
+      style="border:0"
+      src="https://maps.google.com/maps?q=-8.0476,-34.8770&z=15&output=embed"> 
+    </iframe>
+  </div>
+
+</div>
+
+<script>
+// LOGIN
+const nome = localStorage.getItem("usuarioNome");
+
+if (!nome) {
+  window.location.href = "index.html";
+}
+
+document.getElementById("saudacao").innerText =
+  `Olá, ${nome} 👋`;
+
+// LIGAÇÕES
+function ligar(numero) {
+  alert("Ligando para " + numero + "...");
+}
+
+// SEGURANÇA
+function seguranca() {
+  alert("Acessando central de segurança...");
+}
+
+// SOS
+let ativo = false;
+
+function ativarSOS() {
+  ativo = true;
+  document.getElementById("status").innerText =
+    "🚨 Emergência ATIVA!";
+  pegarLocalizacao();
+}
+
+function desativarSOS() {
+  ativo = false;
+  document.getElementById("status").innerText =
+    "✅ Emergência desativada";
+}
+
+// LOGOUT
+function sair() {
+  localStorage.removeItem("usuarioNome");
+  window.location.href = "index.html";
+}
+
+// MAPA COM LOCALIZAÇÃO REAL
+function pegarLocalizacao() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      document.getElementById("mapaFrame").src =
+       
+    });
+  }
+}
+</script>
+<footer>
+  <p>🚨 Projeto Farol © 2026</p>
+  <p>Sistema de Segurança | Emergências: 190 • 192 • 193</p>
+</footer>
